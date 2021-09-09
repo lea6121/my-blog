@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react'
-import { ResetStyle, GlobalStyle } from '../../components/globalStyle'
+import React from 'react'
+import { ResetStyle, GlobalStyle } from '../../globalStyle'
 import './about.css'
-import { Link, useLocation } from 'react-router-dom'
 
 export default function AboutPage() {
   return (

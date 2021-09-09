@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router'
-import { ResetStyle, GlobalStyle } from '../../components/globalStyle'
+import { ResetStyle, GlobalStyle } from '../../globalStyle'
 import './post.css'
 import { postNewPost } from '../../WebAPI'
 import { Loading } from '../../components/App/App'
@@ -34,7 +34,7 @@ export default function PostPage() {
         return setErrors(data.message)
       }
       if (data.title) {
-        alert('發布文章成功！')
+        alert('發佈文章成功！')
         history.push('/')
       }
     })
@@ -56,6 +56,7 @@ export default function PostPage() {
                 name="title"
                 value={title}
                 onChange={handleInputChange}
+                required
               />
             </div>
             <div className="post-form__content form-floating">
@@ -65,6 +66,7 @@ export default function PostPage() {
                 name="content"
                 value={content}
                 onChange={handleInputChange}
+                required
               ></textarea>
               <label htmlFor="floatingTextarea2">Leave a comment here...</label>
             </div>

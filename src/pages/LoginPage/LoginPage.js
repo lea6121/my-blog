@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react'
-import { ResetStyle, GlobalStyle } from '../../components/globalStyle'
+import { ResetStyle, GlobalStyle } from '../../globalStyle'
 import { Loading } from '../../components/App/App'
 import './login.css'
 import { getMe, login } from '../../WebAPI'
@@ -42,7 +42,7 @@ export default function LoginPage() {
           setAuthToken(null)
           return setErrors(response.toString())
         }
-        alert('登入成功。')
+        alert('登入成功！')
         setUser(response.data)
         history.push('/')
       })
@@ -65,6 +65,7 @@ export default function LoginPage() {
               name="username"
               value={username}
               onChange={(e) => updateFormData(e)}
+              required
             />
             <br />
           </div>
@@ -77,6 +78,7 @@ export default function LoginPage() {
               name="password"
               value={password}
               onChange={(e) => updateFormData(e)}
+              required
             />
             <br />
             <span>{errors}</span>

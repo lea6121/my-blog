@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { ResetStyle, GlobalStyle } from '../globalStyle'
+import { ResetStyle, GlobalStyle } from '../../globalStyle'
 import { Link, useLocation, useHistory } from 'react-router-dom'
 import { useContext } from 'react'
 import { AuthContext } from '../../contexts'
@@ -55,7 +55,7 @@ export default function Header() {
   const handleLogout = () => {
     setAuthToken('')
     setUser(null)
-    alert('登出成功')
+    alert('登出成功！')
     if (location.pathname !== '/') {
       history.push('/')
     }

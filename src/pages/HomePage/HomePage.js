@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { ResetStyle, GlobalStyle } from '../../components/globalStyle'
+import { ResetStyle, GlobalStyle } from '../../globalStyle'
 import { Link, useLocation } from 'react-router-dom'
 import { getPosts } from '../../WebAPI'
+import { Loading } from '../../components/App/App'
 
 const Root = styled.div`
   width: 80%;
   margin: 0 auto;
   padding-top: 100px;
+  position: relative;
 `
 
 const PostsContainer = styled.div`
@@ -93,10 +95,16 @@ export default function HomePage() {
   const [posts, setPosts] = useState([])
   const [pages, setPages] = useState(0)
   const [currentPage, setCurrentPage] = useState(0)
+  const [isLoadingMsg, setIsLoadingMsg] = useState(false)
 
   useEffect(() => {
+    if (isLoadingMsg) {
+      return
+    }
+    setIsLoadingMsg(true)
     getPosts()
       .then((data) => {
+        setIsLoadingMsg(false)
         setPages(data.totalPosts)
         setCurrentPage(1)
         return data.posts
@@ -148,6 +156,7 @@ export default function HomePage() {
     <div>
       <ResetStyle />
       <GlobalStyle />
+      {isLoadingMsg && <Loading>Loading...</Loading>}
       <Root>
         {posts.map((post) => (
           <Post key={post.id} post={post} />
